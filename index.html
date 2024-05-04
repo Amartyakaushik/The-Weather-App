@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="the.WeatherApp - Using City Name you can get weather informations. Created By Prashant Kumar">
+    <meta name="keywords" content="HTML, CSS, JavaScript, NODEJS">
+    <meta name="author" content="John Doe">
+    <title>the.Weather</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- fontawesome link -->
+    <link href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=PT+Sans+Narrow&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=PT+Sans+Narrow&family=Splash&display=swap" rel="stylesheet">
+</head>
+<!-- nothing -->
+
+<body onload="videoUrl()">
+    <header class="video-header">
+        <video disablePictureInPicture id="videoLink" src="https://cdn.glitch.me/ae0950e9-fe22-4c7b-a306-3bc7755ace98/video-6.mp4" autoplay loop muted style="user-select: auto;"></video>
+        <div class="viewport-header">
+            <h1>
+                The
+                <span>Weather</span>
+                <p style="font-size: 18px;letter-spacing: 1vw; line-height: 1.8;">Scroll <br><i class="fas fa-chevron-down"></i></p>
+            </h1>
+
+        </div>
+    </header>
+
+    <main>
+        <form action="./" method="post">
+            <input type="text" name="city" id="cityName" placeholder="Your City Name">
+            <p id="link"></p>
+            <a href="https://enally.in">
+                <p id="credit">Developed by enally.in using Node and Express JS.</p>
+            </a>
+        </form>
+    </main>
+
+    <div id="circle"></div>
+</body>
+
+<style>
+     :root {
+        --headerOpacity: 1;
+        --headerScale: 1;
+        --creditOpacity: 0.6;
+    }
+    
+    .video-header {
+        position: absolute;
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    .video-header,
+    .video-header video,
+    .video-header .viewport-header {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .video-header video {
+        background: brown;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+    
+    .video-header .viewport-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        opacity: var(--headerOpacity);
+        transform: scale(var(--headerScale));
+    }
+    
+    html,
+    body {
+        height: 100vh;
+        overflow-x: hidden;
+    }
+    
+    html {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 150%;
+        line-height: 1.4;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    h1 {
+        font-family: "Syncopate", sans-serif;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 3vw;
+        line-height: 1.2;
+        font-size: 3vw;
+        text-align: center;
+    }
+    
+    h1 span {
+        display: block;
+        font-size: 10vw;
+        letter-spacing: -1.3vw;
+    }
+    
+    main {
+        background: white;
+        opacity: 0.80;
+        position: relative;
+        padding: 2rem;
+        margin-top: 100vh;
+        text-align: center;
+        border-top-right-radius: 22px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    }
+    
+    main::before {
+        content: "";
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        top: -100vh;
+    }
+    
+    main p {
+        max-width: 600px;
+        margin: 1rem auto;
+    }
+    
+    main h4 {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        padding-left: 2%;
+    }
+    
+    main form {
+        padding: 0% 2% 4% 2%;
+    }
+    
+    input {
+        padding: 4px;
+        font-size: 20px;
+        color: #24242466;
+        width: 20%;
+        border: none;
+        border-bottom: 1px solid rgba(61, 61, 61, 0.46);
+        text-align: center;
+    }
+    
+    *:focus {
+        outline: none;
+    }
+    
+    #link {
+        font-family: 'Montserrat', sans-serif;
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-family: 'Rubik Moonrocks', cursive;
+        font-size: 28px;
+        color: black;
+    }
+    
+    #credit {
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(45, 45, 45, 0.695);
+        bottom: 0;
+        position: fixed;
+        right: 2%;
+        opacity: 0;
+        opacity: var(--creditOpacity);
+    }
+</style>
+<script type="text/javascript">
+    var viewportHeader = document.querySelector(".viewport-header");
+
+    document.body.addEventListener("scroll", function(event) {
+        var opacity = (document.body.offsetHeight - document.body.scrollTop) / document.body.offsetHeight;
+        var scale = (document.body.offsetHeight - document.body.scrollTop) / document.body.offsetHeight;
+        document.documentElement.style.setProperty('--headerOpacity', opacity);
+        document.documentElement.style.setProperty('--headerScale', scale);
+        document.getElementsByName("fa-chevron-down").style.Opacity = "0.1";
+    });
+
+
+
+    // document.addEventListener("keypress", function(event) {
+    //     //console.log(event);
+    //     var city = document.getElementById("cityName").value;
+    //     document.getElementById("link").innerHTML = city;
+    // });
+
+
+    $(document).ready(function() {
+        setInterval(function() {
+            var city = document.getElementById("cityName").value;
+            document.getElementById("link").innerHTML = city;
+
+        }, 100);
+    });
+
+    function videoUrl() {
+        var videoNo = Math.floor((Math.random() * 6) + 1);
+        document.getElementById("videoLink").src = "https://cdn.glitch.me/ae0950e9-fe22-4c7b-a306-3bc7755ace98/video-" + videoNo + ".mp4";
+    }
+
+    setInterval(() => {
+        var videoNo = Math.floor((Math.random() * 7) + 1);
+        document.getElementById("videoLink").src = "https://cdn.glitch.me/ae0950e9-fe22-4c7b-a306-3bc7755ace98/video-" + videoNo + ".mp4";
+    }, 1000 * 60);
+</script>
+
+</html>
